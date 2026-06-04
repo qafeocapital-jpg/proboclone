@@ -10,6 +10,11 @@ import { twilioClient } from './client';
  */
 
 export const sendOtp = async (phone: string, otp: string) => {
+	if (ENV.TWILIO_TOKEN === 'dummy' || ENV.TWILIO_SID === 'AC00000000000000000000000000000000') {
+		logger.warn({ phone, otp }, 'Skipping Twilio OTP send because dummy credentials are configured');
+		return;
+	}
+
 	try {
 		await twilioClient.messages.create({
 			body: `Your OTP is ${otp}. It’s valid for 5 minutes.`,

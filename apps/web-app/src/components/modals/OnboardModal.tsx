@@ -62,7 +62,12 @@ export default function OnboardModal() {
 
 		setIsResending(true);
 		loginMutation.mutate(phone, {
-			onSuccess: () => {
+			onSuccess: (res) => {
+				const demoOtp = res.data?.otp ?? res.data?.data?.otp;
+				if (demoOtp) {
+					setOtpCode(demoOtp);
+					alert(`Demo OTP: ${demoOtp}`);
+				}
 				setStep('otp');
 			},
 			onError: () => alert('Failed to send OTP'),

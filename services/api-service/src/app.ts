@@ -19,7 +19,7 @@ const app = new Hono();
 app.use(logger());
 app.use(
 	cors({
-		origin: ['http://localhost:5173'],
+		origin: ['http://localhost:5173', 'https://proboclone-web.onrender.com'],
 		allowHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header'],
 		allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
 		exposeHeaders: ['Content-Length', 'X-Custom-Header'],

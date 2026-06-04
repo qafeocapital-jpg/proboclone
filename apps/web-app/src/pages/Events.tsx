@@ -18,7 +18,7 @@ export default function EventsPage() {
 			try {
 				let url = '/market';
 				if (selectedCategoryId !== 'all') {
-					url = `/market/${selectedCategoryId}`;
+					url = `/market/category/${selectedCategoryId}`;
 				}
 				const response = await api.get(url);
 				setEvents(response.data.data);
