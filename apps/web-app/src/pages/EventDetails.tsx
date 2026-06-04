@@ -61,10 +61,6 @@ export default function EventDetails() {
 		return masked + last4;
 	};
 
-	const getOppositeActivityColor = (outcome: string) => {
-		return outcome === 'YES' ? 'text-[#DC2804]' : 'text-[#197BFF]';
-	};
-
 	useEffect(() => {
 		if (!symbol) return;
 
