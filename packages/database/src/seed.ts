@@ -27,6 +27,20 @@ async function seedDB() {
 	}
 
 	console.log('✅ Categories seeded with fixed UUIDs');
+
+	const adminPhone = Bun.env.ADMIN_PHONE;
+	if (adminPhone) {
+		const result = await prisma.user.updateMany({
+			where: { phone: adminPhone },
+			data: { role: 'ADMIN' },
+		});
+
+		if (result.count > 0) {
+			console.log(`✅ Promoted ${adminPhone} to ADMIN`);
+		} else {
+			console.log(`⚠️ ADMIN_PHONE ${adminPhone} was not found, skipping admin promotion`);
+		}
+	}
 }
 
 seedDB().then(() => process.exit(0));
